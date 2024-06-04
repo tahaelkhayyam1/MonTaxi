@@ -7,9 +7,10 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function showLoginForm()
+    public function showLoginForm(Request $request)
     {
-        return view('auth.login');
+        $urlSegment = $request->segment(1);
+        return view('auth.login', ['role' => $urlSegment]);
     }
 
     public function login(Request $request)
