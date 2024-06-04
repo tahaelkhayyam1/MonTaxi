@@ -14,9 +14,9 @@ class DashboardController extends Controller
             case 'admin':
                 return view('admin.home', compact('user'));
             case 'chauffeur':
-                return view('dashboard.chauffeur', compact('user'));
+                return view('admin.home', compact('user'));
             case 'passager':
-                return view('dashboard.passager', compact('user'));
+                return view('passager.home', compact('user'));
             default:
                 return abort(403, 'Unauthorized action.');
         }

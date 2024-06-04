@@ -68,48 +68,7 @@
         
         <a href="#" class="primary-btn text-uppercase">Appeler un taxi</a>
     </div>
-    <div class="col-lg-4  col-md-6 header-right">
-        <h4 class="pb-30">Réservez votre taxi en ligne !</h4>
-        <form class="form">
-            <div class="from-group">
-                <input class="form-control txt-field" type="text" name="name" placeholder="Votre nom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre nom'">
-                <input class="form-control txt-field" type="email" name="email" placeholder="Adresse e-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adresse e-mail'">
-                <input class="form-control txt-field" type="tel" name="phone" placeholder="Numéro de téléphone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Numéro de téléphone'">
-            </div>								
-            <div class="form-group">
-                <div class="default-select" id="default-select">
-                    <select>
-                        <option value="" disabled selected hidden>De Destination</option>
-                        <option value="1">Destination un</option>
-                        <option value="2">Destination deux</option>
-                        <option value="3">Destination trois</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="default-select" id="default-select2">
-                    <select>
-                        <option value="" disabled selected hidden>Vers Destination</option>
-                        <option value="1">Destination un</option>
-                        <option value="2">Destination deux</option>
-                        <option value="3">Destination trois</option>
-                    </select>
-                </div>
-            </div>							    
-            <div class="form-group">
-                <div class="input-group dates-wrap">                                              
-                    <input id="datepicker2" class="dates form-control"  placeholder="Date & heure" type="text">                        
-                    <div class="input-group-prepend">
-                        <span  class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
-                    </div>											
-                </div>
-            </div>							    
-            <div class="form-group">
-                <button class="btn btn-default btn-lg btn-block text-center text-uppercase">Effectuer la réservation</button>
-            </div>
-        </form>
-        
-    </div>											
+  										
 </div>
 </div>					
 </section>
