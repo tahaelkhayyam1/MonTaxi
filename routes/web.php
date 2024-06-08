@@ -54,6 +54,7 @@ use App\Http\Controllers\ReviewController;
 
 Route::get('/', [ReviewController::class, 'index']);
 
+Route::get('/reviews', [ReviewController::class, 'all'])->name('Allreviews');
 
 
 

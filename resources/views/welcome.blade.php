@@ -94,40 +94,7 @@
 
 <!-- End home-about Area -->
 
-<!-- Start services Area -->
-<section class="services-area pb-120">
-<div class="container">
-<div class="row section-title">
-    <h1>Quels services offrons-nous à nos clients</h1>
-    <p>Pour ceux qui sont extrêmement attachés au système respectueux de l'environnement.</p>
-</div>
-<div class="row">
-    <div class="col-lg-4 single-service">
-        <span class="lnr lnr-car"></span>
-        <a href="#"><h4>Service de taxi</h4></a>
-        <p>
-            L'utilisation d'Internet devient de plus en plus courante en raison de l'avancement rapide de la technologie et de la puissance.
-        </p>
-    </div>
-    <div class="col-lg-4 single-service">
-        <span class="lnr lnr-briefcase"></span>
-        <a href="#"><h4>Prises en charge au bureau</h4></a>
-        <p>
-            L'utilisation d'Internet devient de plus en plus courante en raison de l'avancement rapide de la technologie et de la puissance.
-        </p>
-    </div>
-    <div class="col-lg-4 single-service">
-        <span class="lnr lnr-bus"></span>
-        <a href="#"><h4>Transport d'événement</h4></a>
-        <p>
-            L'utilisation d'Internet devient de plus en plus courante en raison de l'avancement rapide de la technologie et de la puissance.
-        </p>
-    </div>												
-</div>	
-</div>	
-</section>
-
-<!-- End services Area -->
+ 
 
 <!-- Start image-gallery Area -->
 <section class="image-gallery-area section-gap">
@@ -187,7 +154,7 @@
         @if(!$reviews->isEmpty() && $reviews->count() > 6)
             <div class="row">
                 <div class="col-12 text-center">
-                    <a href="" class="primary-btn">Voir tous les avis</a>
+                    <a href="/reviews" class="primary-btn">Voir tous les avis</a>
                 </div>
             </div>
         @endif

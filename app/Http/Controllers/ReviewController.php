@@ -12,4 +12,11 @@ class ReviewController extends Controller
         $reviews = Review::all();
         return view('welcome', compact('reviews'));
     }
+
+
+    public function all()
+    {
+        $reviews = Review::all();
+        return view('Allreviews', compact('reviews'));
+    }
 }
