@@ -17,11 +17,6 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 
 // Admin routes
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
@@ -38,15 +33,22 @@ Route::prefix('passager')->middleware(['auth', 'role:passager'])->group(function
     Route::get('/home', [PassagerController::class, 'index'])->name('passager.home');
 });
 
-// Separate login routes for different user types
-Route::prefix('admin')->group(function () {
-    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
+
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
+  
+ 
+ 
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
 });
 
-Route::prefix('passager')->group(function () {
-    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('passager.login');
-});
-
-Route::prefix('chauffeur')->group(function () {
-    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('chauffeur.login');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.home');
+    Route::get('/chauffeur/home', [ChauffeurController::class, 'index'])->name('chauffeur.home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 });

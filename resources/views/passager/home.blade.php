@@ -28,14 +28,15 @@
 								<li class="menu-active"><a href="/">Accueil</a></li>
  								<li><a href="contact">Contact</a></li>
  								 
-                                 <li class="menu-has-children"><a href="">{{ auth()->user()->name }}</a>
+                                 <li class="menu-has-children"><a href="">{{Auth::user()->nom}}</a>
 									<ul>
 										<li><a href="passager/login">Profil</a></li>
                                         <li>
-    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-        @csrf
-        <button type="submit" style="border: none; background: none; color: #007bff; text-decoration: underline; cursor: pointer;">Se Déconnecter</button>
-    </form>
+                                        <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger" type="submit">Logout</button>
+            </form>
 </li>
 
 
