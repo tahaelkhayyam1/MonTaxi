@@ -29,12 +29,12 @@
 							 
 								<li class="menu-has-children"><a href="">Se Connecter</a>
 									<ul>
-										<li><a href="passager/login">Passager</a></li>
+										<li><a href="/login">Passager</a></li>
 										 
 										<li class="menu-has-children"><a href="">Employé</a>
 											<ul>
-												<li><a href="admin/login">Admin</a></li>
-												<li><a href="driver/login">Chaufeur</a></li>
+												<li><a href="/login">Admin</a></li>
+												<li><a href="/login">Chaufeur</a></li>
 											</ul>
 										</li>					              
 									</ul>
@@ -252,8 +252,9 @@
                 <span class="fa fa-star"></span>
             </div>
         </div>
-    </div>																															
+    </div>			 																										
 </div>
+
 </div>	
 </section>
 

@@ -18,23 +18,24 @@
             font-family: 'Poppins', sans-serif;
         }
         .card {
-            border: 1px solid #f0ad4e;
+            border: 1px solid #f9d700;
             border-radius: 15px;
         }
         .card-header {
-            background-color: #f0ad4e;
-            color: white;
+            background-color: #f9d700;
+            color: #222;
             text-align: center;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
         }
         .btn-primary {
-            background-color: #f0ad4e;
-            border-color: #f0ad4e;
+            background-color: #f9d700;
+            border-color: #f9d700;
+            color: #222;
         }
         .btn-primary:hover {
-            background-color: #ec971f;
-            border-color: #ec971f;
+            background-color: #f9d700;
+            border-color: #f9d700;
         }
     </style>
 </head>
