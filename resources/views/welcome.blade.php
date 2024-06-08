@@ -154,111 +154,47 @@
 </section>
 
 <!-- End image-gallery Area -->
-
-<!-- Start reviews Area -->
+ 
+@section('content');
+ 
 <section class="reviews-area section-gap">
-<div class="container">
-<div class="row section-title">
-    <h1>Avis des clients</h1>
-    <p>Pour ceux qui sont extrêmement attachés au système respectueux de l'environnement.</p>
-</div>					
-<div class="row">
-    <div class="col-lg-4 col-md-6">
-        <div class="single-review">
-            <h4>Cody Hines</h4>
-            <p>
-                Ici, vous pouvez trouver les meilleurs accessoires informatiques pour votre ordinateur portable, votre moniteur, votre imprimante, votre scanner, votre haut-parleur.
-            </p>
-            <div class="star">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-            </div>
+    <div class="container">
+        <div class="row section-title">
+            <h1>Avis des clients</h1>
+            <p>Pour ceux qui sont extrêmement attachés au système respectueux de l'environnement.</p>
+        </div>                    
+        <div class="row">
+            @if($reviews->isEmpty())
+                <div class="col-12">
+                    <p>Aucun avis pour le moment.</p>
+                </div>
+            @else
+                @foreach($reviews->take(6) as $review)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-review">
+                            <h4>{{ $review->name }}</h4>
+                            <p>{{ $review->review }}</p>
+                            <div class="star">
+                                @for ($i = 0; $i < 5; $i++)
+                                    <span class="fa fa-star {{ $i < $review->rating ? 'checked' : '' }}"></span>
+                                @endfor
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
         </div>
-    </div>	
-    <div class="col-lg-4 col-md-6">
-        <div class="single-review">
-            <h4>Chad Herrera</h4>
-            <p>
-                Ici, vous pouvez trouver les meilleurs accessoires informatiques pour votre ordinateur portable, votre moniteur, votre imprimante, votre scanner, votre haut-parleur.
-            </p>
-            <div class="star">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
+        @if(!$reviews->isEmpty() && $reviews->count() > 6)
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a href="" class="primary-btn">Voir tous les avis</a>
+                </div>
             </div>
-        </div>
-    </div>	
-    <div class="col-lg-4 col-md-6">
-        <div class="single-review">
-            <h4>Andre Gonzalez</h4>
-            <p>
-                Ici, vous pouvez trouver les meilleurs accessoires informatiques pour votre ordinateur portable, votre moniteur, votre imprimante, votre scanner, votre haut-parleur.
-            </p>
-            <div class="star">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-            </div>
-        </div>
-    </div>	
-    <div class="col-lg-4 col-md-6">
-        <div class="single-review">
-            <h4>Jon Banks</h4>
-            <p>
-                Ici, vous pouvez trouver les meilleurs accessoires informatiques pour votre ordinateur portable, votre moniteur, votre imprimante, votre scanner, votre haut-parleur.
-            </p>
-            <div class="star">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-            </div>
-        </div>
-    </div>	
-    <div class="col-lg-4 col-md-6">
-        <div class="single-review">
-            <h4>Landon Houston</h4>
-            <p>
-                Ici, vous pouvez trouver les meilleurs accessoires informatiques pour votre ordinateur portable, votre moniteur, votre imprimante, votre scanner, votre haut-parleur.
-            </p>
-            <div class="star">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-            </div>
-        </div>
-    </div>	
-    <div class="col-lg-4 col-md-6">
-        <div class="single-review">
-            <h4>Nelle Wade</h4>
-            <p>
-                Ici, vous pouvez trouver les meilleurs accessoires informatiques pour votre ordinateur portable, votre moniteur, votre imprimante, votre scanner, votre haut-parleur.
-            </p>
-            <div class="star">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-            </div>
-        </div>
-    </div>			 																										
-</div>
-
-</div>	
+        @endif
+    </div>    
 </section>
 
-<!-- End reviews Area -->
+ 
         
 <!-- Start home-calltoaction Area -->
 <section class="home-calltoaction-area relative">

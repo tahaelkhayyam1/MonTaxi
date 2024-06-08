@@ -28,12 +28,7 @@ Route::prefix('chauffeur')->middleware(['auth', 'role:chauffeur'])->group(functi
     Route::get('/home', [ChauffeurController::class, 'index'])->name('chauffeur.home');
 });
 
-// Passager routes
-Route::prefix('passager')->middleware(['auth', 'role:passager'])->group(function () {
-    Route::get('/home', [PassagerController::class, 'index'])->name('passager.home');
-});
-
-
+ 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
   
@@ -52,3 +47,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 });
+
+
+
+use App\Http\Controllers\ReviewController;
+
+Route::get('/', [ReviewController::class, 'index']);
+
+
+
+
+
