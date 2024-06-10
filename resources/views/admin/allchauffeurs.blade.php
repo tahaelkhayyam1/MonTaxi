@@ -94,6 +94,12 @@
 
     <!-- Main content -->
     <section class="home-about-area section-gap" id="home">
+      
+  @if(session('success'))
+  <div class="alert alert-success">
+    {{ session('success') }}
+  </div>
+@endif
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
@@ -134,11 +140,11 @@
                         @method('DELETE')
                         <button class="btn btn-primary" type="submit">Update</button>
                       </form>
-                      <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger" type="submit">Delete</button>
-                      </form>
+                      <form action="{{ route('admin.chauffeurs.delete', $chauffeur->id) }}" method="POST" class="d-inline">
+                          @csrf
+                          @method('DELETE')
+                          <button class="btn btn-danger" type="submit">Delete</button>
+                        </form>
                     </td>
                   </tr>
                   @endforeach

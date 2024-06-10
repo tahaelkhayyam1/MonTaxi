@@ -79,3 +79,4 @@ Route::get('images/{id}', [ImageController::class, 'show'])->name('images.show')
 
 
 Route::get('/admin/chauffeurs', [AdminController::class, 'allChauffeurs'])->name('admin.chauffeurs');
+Route::delete('/admin/chauffeurs/{id}', [AdminController::class, 'deleteChauffeur'])->name('admin.chauffeurs.delete');

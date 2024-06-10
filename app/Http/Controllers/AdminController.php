@@ -58,4 +58,15 @@ class AdminController extends Controller
         $user = Auth::user(); // Assuming the admin is authenticated
         return view('admin.profil', compact('user'));
     }
+
+    
+    public function deleteChauffeur($id)
+    {
+        // Find the chauffeur by ID and delete it
+        $chauffeur = User::where('role', 'chauffeur')->findOrFail($id);
+        $chauffeur->delete();
+
+        // Redirect back with a success message
+        return redirect()->route('admin.chauffeurs')->with('success', 'Chauffeur deleted successfully.');
+    }
 }
