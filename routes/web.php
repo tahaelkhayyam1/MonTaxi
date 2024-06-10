@@ -44,10 +44,11 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.home');
     Route::get('/chauffeur/home', [ChauffeurController::class, 'index'])->name('chauffeur.home');
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('passager/home', [HomeController::class, 'index'])->name('home');
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
+Route::get('/admin/profil', [AdminController::class, 'profil'])->name('admin.profil');
 
 
 use App\Http\Controllers\ReviewController;
@@ -59,3 +60,22 @@ Route::get('/reviews', [ReviewController::class, 'all'])->name('Allreviews');
 
 
 
+
+
+
+
+
+
+
+
+
+// routes/web.php
+use App\Http\Controllers\ImageController;
+
+Route::get('images/create', [ImageController::class, 'create'])->name('images.create');
+Route::post('images', [ImageController::class, 'store'])->name('images.store');
+Route::get('images/{id}', [ImageController::class, 'show'])->name('images.show');
+
+
+
+Route::get('/admin/chauffeurs', [AdminController::class, 'allChauffeurs'])->name('admin.chauffeurs');

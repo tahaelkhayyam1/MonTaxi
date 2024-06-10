@@ -67,6 +67,8 @@
                             <button class="btn btn-primary">Register</button>
                         </div>
                     </div>
+                    <span>Already Member ? <a href="/login">Login</a> </span> 
+
                 </form>
             </div>
         </div>

@@ -85,6 +85,7 @@
                                         <button class="btn btn-primary">Login</button>
                                     </div>
                                 </div>
+                               <span>Don't have account ? <a href="/register">Register</a> </span> 
                             </form>
                         </div>
                     </div>

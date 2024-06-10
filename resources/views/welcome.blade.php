@@ -39,7 +39,7 @@
 										</li>					              
 									</ul>
 								</li>
- 								<li><a href="contact">Contact</a></li>
+ 								<li><a href="/contact">Contact</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -175,7 +175,7 @@
         </p>
     </div>
     <div class="col-lg-4 btn-left">
-        <a href="#" class="primary-btn">Contactez notre équipe de support</a>
+        <a href="/contact" class="primary-btn">Contactez notre équipe de support</a>
     </div>
 </div>
 </div>    
