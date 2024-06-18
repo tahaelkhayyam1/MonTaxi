@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach(range(1, 10045) as $index) {
+        foreach(range(1, 20) as $index) {
             User::create([
                 'CNI' => $faker->unique()->numerify('###########'),
                 'nom' => $faker->lastName,
@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'datenaissance' => $faker->date,
                 'lieu' => $faker->city,
-                'role' => $faker->randomElement(['chauffeur', 'passager']),
+                'role' => $faker->randomElement(['chauffeur', 'passager','admin']),
                 'created_at' => $faker->dateTimeBetween('-1 year', 'now'),
                 'updated_at' => now(),
             ]);

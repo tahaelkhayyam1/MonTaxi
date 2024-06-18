@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
- 
+use Illuminate\Support\Facades\Log;
+
 use App\Models\User;
 use Carbon\Carbon;
 class AdminController extends Controller
@@ -59,7 +60,7 @@ class AdminController extends Controller
         return view('admin.profil', compact('user'));
     }
 
-    
+
     public function deleteChauffeur($id)
     {
         // Find the chauffeur by ID and delete it
@@ -69,4 +70,44 @@ class AdminController extends Controller
         // Redirect back with a success message
         return redirect()->route('admin.chauffeurs')->with('success', 'Chauffeur deleted successfully.');
     }
+
+
+    public function editChauffeur($id)
+    {
+        $chauffeur = User::where('role', 'chauffeur')->findOrFail($id);
+        return view('admin.editchauffeur', compact('chauffeur'));
+    }
+
+    // Method to update a chauffeur
+    public function updateChauffeur(Request $request, $id)
+    {
+        $chauffeur = User::where('role', 'chauffeur')->findOrFail($id);
+    
+        try {
+            // Validate the request
+            $request->validate([
+                'CNI' => 'required|unique:users,CNI,' . $chauffeur->id,
+                'nom' => 'required|string|max:255',
+                'prenom' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email,' . $chauffeur->id,
+                'datenaissance' => 'required|date',
+                'lieu' => 'required|string|max:255',
+            ]);
+    
+            // Update the chauffeur
+            $chauffeur->update([
+                'CNI' => $request->CNI,
+                'nom' => $request->nom,
+                'prenom' => $request->prenom,
+                'email' => $request->email,
+                'datenaissance' => $request->datenaissance,
+                'lieu' => $request->lieu,
+            ]);
+    
+            return redirect()->route('admin.chauffeurs')->with('success', 'Chauffeur updated successfully.');
+        } catch (\Exception $e) {
+            Log::error('Error updating chauffeur: ' . $e->getMessage());
+            return back()->withErrors(['error' => 'Failed to update chauffeur. Please try again.']);
+        }
+}
 }

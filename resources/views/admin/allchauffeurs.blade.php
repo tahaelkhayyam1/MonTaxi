@@ -95,11 +95,14 @@
     <!-- Main content -->
     <section class="home-about-area section-gap" id="home">
       
-  @if(session('success'))
-  <div class="alert alert-success">
+    @if(session('success'))
+  <div class="alert alert-success" id="success-alert">
     {{ session('success') }}
   </div>
 @endif
+
+
+
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
@@ -135,11 +138,7 @@
                     <td>{{ $chauffeur->datenaissance }}</td>
                     <td>{{ $chauffeur->lieu }}</td>
                     <td>
-                      <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-primary" type="submit">Update</button>
-                      </form>
+                    <a href="{{ route('admin.chauffeurs.edit', $chauffeur->id) }}" class="btn btn-primary">Edit</a>
                       <form action="{{ route('admin.chauffeurs.delete', $chauffeur->id) }}" method="POST" class="d-inline">
                           @csrf
                           @method('DELETE')
@@ -256,6 +255,17 @@
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       });
     </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var successAlert = document.getElementById('success-alert');
+    if (successAlert) {
+      setTimeout(function() {
+        successAlert.style.display = 'none';
+      }, 5000); 
+    }
+  });
+</script>
 </body>
 
 </html>

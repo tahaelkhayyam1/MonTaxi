@@ -10,46 +10,43 @@ use App\Http\Controllers\DashboardController;
 Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+return view('welcome');
 })->name('home');
 
 Route::get('/contact', function () {
-    return view('contact');
+return view('contact');
 })->name('contact');
 
-
 // Admin routes
-Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/home', [AdminController::class, 'index'])->name('admin.home');
+Route::prefix('admin')->middleware(['auth', 'role
+'])->group(function () {
+Route::get('/home', [AdminController::class, 'index'])->name('admin.home');
 });
 
 // Chauffeur routes
-Route::prefix('chauffeur')->middleware(['auth', 'role:chauffeur'])->group(function () {
-    Route::get('/home', [ChauffeurController::class, 'index'])->name('chauffeur.home');
+Route::prefix('chauffeur')->middleware(['auth', 'role
+'])->group(function () {
+Route::get('/home', [ChauffeurController::class, 'index'])->name('chauffeur.home');
 });
 
- 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
-  
- 
- 
+
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('/register', [AuthController::class, 'register'])->name('register');
-    Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
-    Route::get('/login', [AuthController::class, 'login'])->name('login');
-    Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.home');
-    Route::get('/chauffeur/home', [ChauffeurController::class, 'index'])->name('chauffeur.home');
-    Route::get('passager/home', [HomeController::class, 'index'])->name('home');
-    Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.home');
+Route::get('/chauffeur/home', [ChauffeurController::class, 'index'])->name('chauffeur.home');
+Route::get('passager/home', [HomeController::class, 'index'])->name('home');
+Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 Route::get('/admin/profil', [AdminController::class, 'profil'])->name('admin.profil');
-
 
 use App\Http\Controllers\ReviewController;
 
@@ -57,26 +54,10 @@ Route::get('/', [ReviewController::class, 'index']);
 
 Route::get('/reviews', [ReviewController::class, 'all'])->name('Allreviews');
 
-
-
-
-
-
-
-
-
-
-
-
-
-// routes/web.php
-use App\Http\Controllers\ImageController;
-
-Route::get('images/create', [ImageController::class, 'create'])->name('images.create');
-Route::post('images', [ImageController::class, 'store'])->name('images.store');
-Route::get('images/{id}', [ImageController::class, 'show'])->name('images.show');
-
-
-
 Route::get('/admin/chauffeurs', [AdminController::class, 'allChauffeurs'])->name('admin.chauffeurs');
 Route::delete('/admin/chauffeurs/{id}', [AdminController::class, 'deleteChauffeur'])->name('admin.chauffeurs.delete');
+// Route to show the form to edit a chauffeur
+Route::get('/admin/chauffeurs/{id}/edit', [AdminController::class, 'editChauffeur'])->name('admin.chauffeurs.edit');
+
+// Route to update a chauffeur
+Route::put('/admin/chauffeurs/{id}', [AdminController::class, 'updateChauffeur'])->name('admin.chauffeurs.update');

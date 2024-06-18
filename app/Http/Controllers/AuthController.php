@@ -59,7 +59,7 @@ class AuthController extends Controller
             } elseif ($user->role === 'chauffeur') {
                 return redirect()->route('chauffeur.home')->with('success', 'Login Success');
             } else {
-                return redirect()->route('home')->with('success', 'Login Success');
+                return redirect()->route('passager.home')->with('success', 'Login Success');
             }
         }
 
