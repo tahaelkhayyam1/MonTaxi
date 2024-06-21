@@ -116,21 +116,22 @@
             @extends('layouts.app')
 
             <div class="container">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>CNI</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>Email</th>
-                    <th>Date de Naissance</th>
-                    <th>Lieu</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($chauffeurs as $chauffeur)
-                  <tr>
+            <table id="example1" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>CNI</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>Date de Naissance</th>
+                <th>Lieu</th>
+                <th>Taxis</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($chauffeurs as $chauffeur)
+                <tr>
                     <td>{{ $chauffeur->CNI }}</td>
                     <td>{{ $chauffeur->nom }}</td>
                     <td>{{ $chauffeur->prenom }}</td>
@@ -138,28 +139,43 @@
                     <td>{{ $chauffeur->datenaissance }}</td>
                     <td>{{ $chauffeur->lieu }}</td>
                     <td>
+                        @if($chauffeur->taxis->isEmpty())
+                            No Taxis Assigned
+                        @else
+                            <ul>
+                                @foreach($chauffeur->taxis as $taxi)
+                                    <li> {{ $taxi->marque }} ({{ $taxi->model_year }})
+                                    <br> Plate: {{ $taxi->plate }}</li>
+                                    <br>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </td>
+                    <td>
+                    <a href="{{ route('admin.chauffeurs.view', ['id' => $chauffeur->id]) }}" class="btn btn-warning">Details</a>
                     <a href="{{ route('admin.chauffeurs.edit', $chauffeur->id) }}" class="btn btn-primary">Edit</a>
-                      <form action="{{ route('admin.chauffeurs.delete', $chauffeur->id) }}" method="POST" class="d-inline">
-                          @csrf
-                          @method('DELETE')
-                          <button class="btn btn-danger" type="submit">Delete</button>
+                        <form action="{{ route('admin.chauffeurs.delete', $chauffeur->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit">Delete</button>
                         </form>
                     </td>
-                  </tr>
-                  @endforeach
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <th>CNI</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>Email</th>
-                    <th>Date de Naissance</th>
-                    <th>Lieu</th>
-                    <th>Actions</th>
-                  </tr>
-                </tfoot>
-              </table>
+                </tr>
+            @endforeach
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>CNI</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>Date de Naissance</th>
+                <th>Lieu</th>
+                <th>Taxis</th>
+                <th>Actions</th>
+            </tr>
+        </tfoot>
+    </table>
             </div>
           </div>
           <!-- /.card-body -->

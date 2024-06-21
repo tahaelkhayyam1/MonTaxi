@@ -41,17 +41,23 @@ class AdminController extends Controller
 
 
 
+    
 
-
+    public function viewChauffeur($id)
+    {
+         $chauffeur = User::where('role', 'chauffeur')->with('taxis')->findOrFail($id);
+        
+        return view('admin.viewChauffeur', compact('chauffeur'));
+    }
 
 
 
     public function allChauffeurs()
     {
-         $chauffeurs = User::where('role', 'chauffeur')->get();
-         return view('admin.allchauffeurs', compact('chauffeurs'));
+        $chauffeurs = User::where('role', 'chauffeur')->with('taxis')->get();
+        return view('admin.allchauffeurs', compact('chauffeurs'));
     }
-
+    
 
 
     public function profil()
@@ -60,13 +66,17 @@ class AdminController extends Controller
         return view('admin.profil', compact('user'));
     }
 
-
     public function deleteChauffeur($id)
     {
         // Find the chauffeur by ID and delete it
         $chauffeur = User::where('role', 'chauffeur')->findOrFail($id);
+    
+        // Delete the chauffeur's taxis
+        $chauffeur->taxis()->delete(); // Assumes taxis are related through a 'taxis' relationship
+    
+        // Delete the chauffeur
         $chauffeur->delete();
-
+    
         // Redirect back with a success message
         return redirect()->route('admin.chauffeurs')->with('success', 'Chauffeur deleted successfully.');
     }

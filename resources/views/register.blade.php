@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -39,6 +39,10 @@
                         <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required>
                     </div>
                     <div class="mb-3">
+                        <label for="phonenumber" class="form-label">Phone Number</label>
+                        <input type="text" name="phonenumber" class="form-control" id="phonenumber" placeholder="+1234567890" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" name="password" class="form-control" id="password" required>
                     </div>
@@ -54,21 +58,20 @@
                         <label for="lieu" class="form-label">Lieu de Naissance</label>
                         <input type="text" name="lieu" class="form-control" id="lieu" required>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="role" class="form-label">Role</label>
                         <select name="role" class="form-control" id="role" required>
                             <option value="admin">Admin</option>
                             <option value="chauffeur">Chauffeur</option>
                             <option value="passager">Passager</option>
                         </select>
-                    </div>
+                    </div> -->
                     <div class="mb-3">
                         <div class="d-grid">
                             <button class="btn btn-primary">Register</button>
                         </div>
                     </div>
                     <span>Already Member ? <a href="/login">Login</a> </span> 
-
                 </form>
             </div>
         </div>

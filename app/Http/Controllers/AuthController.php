@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,6 @@ class AuthController extends Controller
     {
         return view('register');
     }
-
     public function registerPost(Request $request)
     {
         $request->validate([
@@ -23,9 +23,9 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'datenaissance' => 'required|date',
             'lieu' => 'required|string|max:255',
-            'role' => 'required|string|in:admin,chauffeur,passager',
+             'phonenumber' => 'nullable|string|max:20', // Added validation for phone number
         ]);
-
+    
         $user = new User();
         $user->CNI = $request->CNI;
         $user->nom = $request->nom;
@@ -34,9 +34,10 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->datenaissance = $request->datenaissance;
         $user->lieu = $request->lieu;
-        $user->role = $request->role;
+        $user->role = "passager";
+        $user->phonenumber = $request->phonenumber; // Assign phone number if provided
         $user->save();
-
+    
         return back()->with('success', 'Register successfully');
     }
 
@@ -59,7 +60,7 @@ class AuthController extends Controller
             } elseif ($user->role === 'chauffeur') {
                 return redirect()->route('chauffeur.home')->with('success', 'Login Success');
             } else {
-                return redirect()->route('passager.home')->with('success', 'Login Success');
+                return redirect()->route('home')->with('success', 'Login Success');
             }
         }
 
@@ -72,21 +73,3 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
