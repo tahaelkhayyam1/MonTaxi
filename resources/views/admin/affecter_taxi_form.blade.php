@@ -1,14 +1,22 @@
-<!-- resources/views/admin/affecter_taxi_form.blade.php -->
+@include('includes.headerb')
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Affecter Taxi</title>
-    <!-- Include your CSS and JS dependencies here -->
-</head>
-<body>
+<section class="banner-area relative about-banner" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">				
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+Welcome                    </h1>	
+                    <p class="text-white link-nav"><a href="/admin/home">Home </a>  <span class="lnr lnr-arrow-right"></span>  <span> affecter-taxi</span></p>
+                </div>	
+            </div>
+        </div>
+    </section> 
+
+
+    <section class="reviews-area section-gap">
+
+
     <div class="container">
         <h1>Affecter Taxi à {{ $chauffeur->prenom }} {{ $chauffeur->nom }}</h1>
         <form action="{{ route('admin.chauffeurs.affecter-taxi.store', ['id' => $chauffeur->id]) }}" method="POST">
@@ -32,5 +40,6 @@
             <button type="submit" class="btn btn-primary">Affecter Taxi</button>
         </form>
     </div>
+    </section>
 </body>
 </html>

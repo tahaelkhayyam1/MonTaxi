@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <!-- Meta tags and CSS links as before -->
-</head>
-
-<body>
-  <!-- Header and other sections as before -->
+@include('includes.headerb')
 
   <div class="wrapper">
     <section class="home-about-area section-gap" id="home">

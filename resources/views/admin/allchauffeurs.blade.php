@@ -1,64 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('includes.headera')
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard 3</title>
-
-  <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-  <!-- Bootstrap -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
-
-  <!-- AdminLTE -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/adminlte.min.js"></script>
-
-  <!-- OPTIONAL SCRIPTS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-
-  <!-- AdminLTE for demo purposes -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/demo.js"></script>
-
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/pages/dashboard3.js"></script>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-  <!-- IonIcons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-
-  <!-- Theme style -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css">
-  <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-
-  <!-- DataTables -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.bootstrap4.min.css">
-
-  <!-- DataTables & Plugins -->
-  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
-  <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-  <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.bootstrap4.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.colVis.min.js"></script>
-</head>
-
-<body>
-  <header id="header">
+<header id="header">
     <div class="header-top"></div>
     <div class="container main-menu">
       <div class="row align-items-center justify-content-between d-flex">
@@ -66,7 +8,11 @@
         <nav id="nav-menu-container">
           <ul class="nav-menu">
             <li class="menu-active"><a href="/">Accueil</a></li>
-            <li class="menu-active"><a href="Chaufeurs">Chaufeurs</a></li>
+            <li class="menu-active"><a href="chauffeurs">Chaufeurs</a></li>
+       
+       
+       
+       
             <li class="menu-has-children">
               <a href="">{{ Auth::user()->nom }} {{ Auth::user()->prenom }}</a>
               <ul>
@@ -82,6 +28,15 @@
                 </li>
               </ul>
             </li>
+
+
+
+
+
+
+
+
+            
           </ul>
         </nav>
       </div>
@@ -126,7 +81,7 @@
                 <th>Date de Naissance</th>
                 <th>Lieu</th>
                 <th>Taxis</th>
-                <th>Actions</th>
+                <th class="noprint">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -151,7 +106,7 @@
                             </ul>
                         @endif
                     </td>
-                    <td>
+                    <td class="noprint">
                     <a href="{{ route('admin.chauffeurs.view', ['id' => $chauffeur->id]) }}" class="btn btn-warning">Details</a>
                     <a href="{{ route('admin.chauffeurs.edit', $chauffeur->id) }}" class="btn btn-primary">Edit</a>
                         <form action="{{ route('admin.chauffeurs.delete', $chauffeur->id) }}" method="POST" class="d-inline">
