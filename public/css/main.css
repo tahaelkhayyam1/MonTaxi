@@ -1938,10 +1938,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .default-select .nice-select .list .option {
   font-weight: 300;
-  -webkit-transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  transition: all 0.3s ease;
   line-height: 28px;
   min-height: 28px;
   font-size: 12px;
@@ -1949,12 +1946,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .default-select .nice-select .list .option.selected {
-  color: #f9d700;
+  color: black;
   background: transparent;
 }
 
 .default-select .nice-select .list .option:hover {
-  color: #f9d700;
+  color: blue;
   background: transparent;
 }
 
@@ -2580,6 +2577,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .header-right .form-control {
+  color: whitesmoke;
   font-size: 14px;
   padding: 0.575rem 0.75rem;
   background-color: #000000;

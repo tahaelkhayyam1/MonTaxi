@@ -1,19 +1,15 @@
-@include('includes.headera')
-    
+@include('includes.headerb')
  
 <header id="header">
-    <div class="header-top">
-    </div>
+    <div class="header-top"></div>
     <div class="container main-menu">
         <div class="row align-items-center justify-content-between d-flex">
             <a href="/"><img src="{{ asset('img/logo.png') }}" alt="" title="" /></a>
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
                     <li class="menu-active"><a href="/">Accueil</a></li>
-                    <li><a href="contact">Contact</a></li>
-
-                    <li class="menu-has-children"> <a href="">{{ Auth::user()->nom }} {{ Auth::user()->prenom }}</a>
-
+                    <li class="menu-has-children">
+                        <a href="">{{ Auth::user()->nom }} {{ Auth::user()->prenom }}</a>
                         <ul>
                             <li><a href="profil">Profil</a></li>
                             <li>
@@ -22,8 +18,6 @@
                                     <button type="submit" style="border: none; background: none; color: #007bff; text-decoration: underline; cursor: pointer;">Se Déconnecter</button>
                                 </form>
                             </li>
-
-
                         </ul>
                     </li>
                 </ul>
@@ -32,39 +26,30 @@
     </div>
 </header>
 
-
-
-
 <!-- start banner Area -->
-
-
-
 <section class="banner-area relative" id="home">
     <div class="overlay overlay-bg"></div>
     <div class="container">
         <div class="row fullscreen d-flex align-items-center justify-content-between">
-            <div class="banner-content col-lg-6 col-md-6 ">
-                <h6 class="text-white ">Besoin d'un taxi? suffit d'appeler</h6>
-                <h1 class="text-uppercase">
-                    +212 658052235
-                </h1>
+            <div class="banner-content col-lg-6 col-md-6">
+                <h6 class="text-white">Besoin d'un taxi? suffit d'appeler</h6>
+                <h1 class="text-uppercase">+212 658052235</h1>
                 <p class="pt-10 pb-10 text-white">
                     Que vous préfériez les escapades en ville ou les vacances au soleil, vous pouvez toujours améliorer vos voyages en séjournant dans un petit hôtel.
                 </p>
-
                 <a href="#" class="primary-btn text-uppercase">Appeler un taxi</a>
             </div>
-            <div class="col-lg-4  col-md-6 header-right">
+            <div class="col-lg-4 col-md-6 header-right">
                 <h4 class="pb-30">Réservez votre taxi en ligne !</h4>
                 <form class="form">
-                    <div class="from-group">
-                        <input class="form-control txt-field" type="text" name="name" placeholder="Votre nom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Votre nom'">
-                        <input class="form-control txt-field" type="email" name="email" placeholder="Adresse e-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adresse e-mail'">
-                        <input class="form-control txt-field" type="tel" name="phone" placeholder="Numéro de téléphone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Numéro de téléphone'">
+                    <div class="form-group">
+                        <input class="form-control txt-field" type="text" name="name" value="{{ Auth::user()->nom }} {{ Auth::user()->prenom }}">
+                        <input class="form-control txt-field" type="email" name="email" value="{{ Auth::user()->email }}">
+                        <input class="form-control txt-field" type="tel" name="phone" value="{{ Auth::user()->phonenumber }}">
                     </div>
                     <div class="form-group">
                         <div class="default-select" id="default-select">
-                            <select>
+                            <select class="form-control">
                                 <option value="" disabled selected hidden>De Destination</option>
                                 <option value="1">Destination un</option>
                                 <option value="2">Destination deux</option>
@@ -74,7 +59,7 @@
                     </div>
                     <div class="form-group">
                         <div class="default-select" id="default-select2">
-                            <select>
+                            <select class="form-control">
                                 <option value="" disabled selected hidden>Vers Destination</option>
                                 <option value="1">Destination un</option>
                                 <option value="2">Destination deux</option>
@@ -94,15 +79,9 @@
                         <button class="btn btn-default btn-lg btn-block text-center text-uppercase">Effectuer la réservation</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
-</section>
-
-
-
-
 </section>
 
 
