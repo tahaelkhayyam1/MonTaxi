@@ -73,3 +73,14 @@ Route::get('/admin/chauffeurs/{id}/affecter-taxi', [AdminController::class, 'aff
 // routes/web.php
 
 Route::post('/admin/chauffeurs/{id}/affecter-taxi', [AdminController::class, 'storeTaxiAssignment'])->name('admin.chauffeurs.affecter-taxi.store');
+
+
+
+
+
+Route::get('admin/chauffeurs/create', [AdminController::class, 'createChauffeur'])->name('admin.chauffeurs.create');
+
+ 
+
+Route::post('/admin/chauffeurs', [AdminController::class, 'storeChauffeur'])->name('admin.chauffeurs.store');
+

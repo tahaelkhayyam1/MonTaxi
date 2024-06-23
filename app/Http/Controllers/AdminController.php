@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
 use App\Models\Taxi;
@@ -93,33 +94,29 @@ class AdminController extends Controller
     public function updateChauffeur(Request $request, $id)
     {
         $chauffeur = User::where('role', 'chauffeur')->findOrFail($id);
+
+        // Validate the request
+        $request->validate([
+            'CNI' => 'required|unique:users,CNI,' . $chauffeur->id,
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $chauffeur->id,
+            'datenaissance' => 'required|date',
+            'lieu' => 'required|string|max:255',
+            'phonenumber' => 'required|string|max:20',
+        ]);
     
-        try {
-            // Validate the request
-            $request->validate([
-                'CNI' => 'required|unique:users,CNI,' . $chauffeur->id,
-                'nom' => 'required|string|max:255',
-                'prenom' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users,email,' . $chauffeur->id,
-                'datenaissance' => 'required|date',
-                'lieu' => 'required|string|max:255',
-            ]);
+        // Update the chauffeur
+        $chauffeur->CNI = $request->CNI;
+        $chauffeur->nom = $request->nom;
+        $chauffeur->prenom = $request->prenom;
+        $chauffeur->email = $request->email;
+        $chauffeur->datenaissance = $request->datenaissance;
+        $chauffeur->lieu = $request->lieu;
+        $chauffeur->phonenumber = $request->phonenumber;
+        $chauffeur->save();
     
-            // Update the chauffeur
-            $chauffeur->update([
-                'CNI' => $request->CNI,
-                'nom' => $request->nom,
-                'prenom' => $request->prenom,
-                'email' => $request->email,
-                'datenaissance' => $request->datenaissance,
-                'lieu' => $request->lieu,
-            ]);
-    
-            return redirect()->route('admin.chauffeurs')->with('success', 'Chauffeur updated successfully.');
-        } catch (\Exception $e) {
-            Log::error('Error updating chauffeur: ' . $e->getMessage());
-            return back()->withErrors(['error' => 'Failed to update chauffeur. Please try again.']);
-        }
+        return redirect()->route('admin.chauffeurs')->with('success', 'Chauffeur updated successfully.');
 }
 
  
@@ -146,5 +143,70 @@ public function storeTaxiAssignment(Request $request, $id)
 
     return redirect()->route('admin.chauffeurs.view', ['id' => $chauffeur->id])->with('success', 'Taxi affecté avec succès.');
 }
+
+
+
+public function createChauffeur()
+{
+    return view('admin.createchauffeur');
+
+}
+public function storeChauffeur(Request $request)
+{
+    // Validate the request
+    $request->validate([
+        // Chauffeur validation
+        'CNI' => 'required|unique:users,CNI',
+        'nom' => 'required|string|max:255',
+        'prenom' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users,email',
+        'password' => 'required|string|min:8',
+        'datenaissance' => 'required|date',
+        'lieu' => 'required|string|max:255',
+        'phonenumber' => 'required|string|max:20',
+        // Taxi validation
+        'marque' => 'required|string|max:255',
+        'model_year' => 'required|integer',
+        'plate' => 'required|string|max:255|unique:taxis,plate',
+        'color' => 'required|string|max:255',
+    ]);
+
+    // Create the chauffeur
+    $chauffeur = new User();
+    $chauffeur->CNI = $request->CNI;
+    $chauffeur->nom = $request->nom;
+    $chauffeur->prenom = $request->prenom;
+    $chauffeur->email = $request->email;
+    $chauffeur->password = Hash::make($request->password);
+    $chauffeur->datenaissance = $request->datenaissance;
+    $chauffeur->lieu = $request->lieu;
+    $chauffeur->role = 'chauffeur';
+    $chauffeur->phonenumber = $request->phonenumber;
+    $chauffeur->save();
+
+    // Create the taxi
+    $taxi = new Taxi();
+    $taxi->marque = $request->marque;
+    $taxi->model_year = $request->model_year;
+    $taxi->plate = $request->plate;
+    $taxi->color = $request->color;
+    $taxi->user_id = $chauffeur->id;
+    $taxi->save();
+
+    return redirect()->route('admin.chauffeurs')->with('success', 'Chauffeur et taxi ajoutés avec succès.');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
