@@ -1,6 +1,20 @@
-@extends('layouts.app')
+@include('includes.headerb')
 
-@section('content')
+<!-- Start banner Area -->
+<section class="banner-area relative about-banner" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">				
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+Welcome                    </h1>	
+                <p class="text-white link-nav"><a href="/admin/home">Home </a>  <span class="lnr lnr-arrow-right"></span>  <span> ModifierChauffeur</span></p>
+            </div>	
+        </div>
+    </div>
+</section>
+<section class="reviews-area section-gap">
+
 <div class="container">
     <h1>Edit Chauffeur</h1>
     <form id="editChauffeurForm" method="POST" action="{{ route('admin.chauffeurs.update', $chauffeur->id) }}">
@@ -39,4 +53,4 @@
         </div>
     </form>
 </div>
-@endsection
+</section>

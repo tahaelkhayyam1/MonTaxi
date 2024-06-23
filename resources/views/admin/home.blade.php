@@ -7,7 +7,7 @@
         <a href="/"><img src="{{ asset('img/logo.png') }}" alt="Logo" title="" /></a>
         <nav id="nav-menu-container">
           <ul class="nav-menu">
-            <li class="menu-active"><a href="/">Accueil</a></li>
+          <li class="menu-active"><a href="home">Accueil</a></li>
             <li class="menu-active"><a href="chauffeurs">Chaufeurs</a></li>
        
        

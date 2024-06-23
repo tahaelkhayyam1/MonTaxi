@@ -22,6 +22,9 @@ Route::get('/contact', function () {
 Route::prefix('admin')->middleware(['auth', 'role
 '])->group(function () {
     Route::get('/home', [AdminController::class, 'index'])->name('admin.home');
+    Route::get('/chauffeurs/create', [AdminController::class, 'createChauffeur'])->name('admin.chauffeurs.create');
+
+
 });
 
 // Chauffeur routes
