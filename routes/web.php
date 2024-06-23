@@ -87,3 +87,8 @@ Route::get('admin/chauffeurs/create', [AdminController::class, 'createChauffeur'
 
 Route::post('/admin/chauffeurs', [AdminController::class, 'storeChauffeur'])->name('admin.chauffeurs.store');
 
+use App\Http\Controllers\ReservationController;
+
+Route::post('/passager/reservation', [ReservationController::class, 'store'])->name('passager.reservation');
+Route::get('/passager/reservations', [PassagerController::class, 'reservations'])->name('passager.reservations');
+Route::delete('/passager/reservations/{id}/cancel', [PassagerController::class, 'cancelReservation'])->name('passager.cancelReservation');

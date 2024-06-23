@@ -11,15 +11,14 @@ class CreateReservationsTable extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id('reservation_id');
             $table->foreignId('utilisateur_id')->constrained('utilisateurs', 'utilisateur_id');
-            $table->foreignId('chauffeur_id')->constrained('chauffeurs', 'chauffeur_id');
-            $table->foreignId('vehicule_id')->constrained('vehicules', 'vehicule_id');
+            $table->foreignId('chauffeur_id')->nullable()->constrained('chauffeurs', 'chauffeur_id');
+            $table->foreignId('vehicule_id')->nullable()->constrained('vehicules', 'vehicule_id');
             $table->string('lieu_depart', 255);
             $table->string('lieu_arrivee', 255);
             $table->timestamp('heure_depart');
-            $table->timestamp('heure_arrivee')->nullable();
             $table->enum('statut', ['en_attente', 'terminee', 'annulee'])->default('en_attente');
             $table->decimal('tarif', 10, 2)->nullable();
-            $table->timestamp('cree_a')->useCurrent();
+            $table->timestamps();
         });
     }
 
