@@ -186,7 +186,7 @@
                 <a href="#"><i class="fa fa-twitter"></i></a>
                 <a href="#"><i class="fa fa-dribbble"></i></a>
                 <a href="#"><i class="fa fa-behance"></i></a>
-              </div>
+              </div> 
             </div>
           </div>
           <div class="col-lg-4 col-md-6 col-sm-6">
