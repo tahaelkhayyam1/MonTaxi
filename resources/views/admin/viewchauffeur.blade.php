@@ -66,7 +66,15 @@
         </div>
     </section>
     <section class="reviews-area section-gap">
-        <div class="container">
+        
+    @if(session('success'))
+  <div class="alert alert-success" id="success-alert">
+    {{ session('success') }}
+  </div>
+@endif
+
+    
+    <div class="container">
             <div class="main-body">
                 <div class="row gutters-sm">
                     <div class="col-md-4 mb-3">
@@ -152,7 +160,7 @@
                                 @endif
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <a class="btn btn-info" href="{{ route('admin.chauffeurs.edit', ['id' => $chauffeur->id]) }}">Affecter Taxi</a>
+                                    <a class="btn btn-info" href="{{ route('admin.chauffeurs.affecter-taxi', ['id' => $chauffeur->id]) }}">Affecter Taxi</a>
                                     </div>
                                 </div>
                             </div>

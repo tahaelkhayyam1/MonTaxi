@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 use App\Models\User;
+use App\Models\Taxi;
 use Carbon\Carbon;
 class AdminController extends Controller
 {
@@ -120,4 +121,30 @@ class AdminController extends Controller
             return back()->withErrors(['error' => 'Failed to update chauffeur. Please try again.']);
         }
 }
+
+ 
+public function affecterTaxiForm($id)
+{
+    $chauffeur = User::findOrFail($id); // Assuming Chauffeur model and database structure
+
+    return view('admin.affecter_taxi_form', compact('chauffeur'));
+}
+// app/Http/Controllers/AdminController.php
+
+public function storeTaxiAssignment(Request $request, $id)
+{
+    $chauffeur = User::findOrFail($id);
+
+    $taxi = new Taxi();
+    $taxi->marque = $request->marque;
+    $taxi->model_year = $request->model_year;
+    $taxi->plate = $request->plate;
+    $taxi->color = $request->color;
+
+    // Save taxi to chauffeur
+    $chauffeur->taxis()->save($taxi);
+
+    return redirect()->route('admin.chauffeurs.view', ['id' => $chauffeur->id])->with('success', 'Taxi affecté avec succès.');
+}
+
 }

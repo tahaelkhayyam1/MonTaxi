@@ -63,3 +63,13 @@ Route::get('/admin/chauffeurs/{id}/edit', [AdminController::class, 'editChauffeu
 // Route to update a chauffeur
 Route::put('/admin/chauffeurs/{id}', [AdminController::class, 'updateChauffeur'])->name('admin.chauffeurs.update');
 Route::get('/passager/profil', [PassagerController::class, 'profil'])->name('passager.profil');
+Route::get('/admin/chauffeurs/{id}', [AdminController::class, 'viewChauffeur'])
+     ->name('admin.chauffeurs.view');
+
+ 
+
+Route::get('/admin/chauffeurs/{id}/affecter-taxi', [AdminController::class, 'affecterTaxiForm'])->name('admin.chauffeurs.affecter-taxi');
+
+// routes/web.php
+
+Route::post('/admin/chauffeurs/{id}/affecter-taxi', [AdminController::class, 'storeTaxiAssignment'])->name('admin.chauffeurs.affecter-taxi.store');
