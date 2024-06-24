@@ -1,49 +1,71 @@
-<!-- resources/views/passager/reservations.blade.php -->
+@include('includes.headerb')
 
-@extends('layouts.app') <!-- Adjust based on your layout structure -->
+<!-- Start banner Area -->
+<section class="banner-area relative about-banner" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Welcome </h1>
+                <p class="text-white link-nav"><a href="home">Home </a> <span class="lnr lnr-arrow-right"></span> <span href="/reviews"> Reservations</span></p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="reviews-area section-gap">
 
-@section('content')
     <div class="container">
         <h2>My Reservations</h2>
         @if ($reservations->isEmpty())
-            <p>No reservations found.</p>
+        <p>No reservations found.</p>
         @else
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Lieu de Départ</th>
-                        <th>Lieu d'Arrivée</th>
-                        <th>Date et Heure de Départ</th>
-                        <th>Statut</th>
-                        <th>Tarif</th>
-                        <th>Action</th> <!-- New column for Cancel button -->
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($reservations as $reservation)
-                        <tr>
-                            <td>{{ $reservation->id }}</td>
-                            <td>{{ $reservation->lieu_depart }}</td>
-                            <td>{{ $reservation->lieu_arrivee }}</td>
-                            <td>{{ $reservation->heure_depart->format('d/m/Y H:i') }}</td>
-                            <td>{{ $reservation->statut }}</td>
-                            <td>{{ $reservation->tarif ?? 'N/A' }}</td>
-                            <td>
-                                @if ($reservation->statut === 'en_attente')
-                                    <form action="{{ route('passager.cancelReservation', $reservation->reservation_id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Annuler</button>
-                                    </form>
-                                @else
-                                    <span class="text-muted">Non annulable</span>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Lieu de Départ</th>
+                    <th>Lieu d'Arrivée</th>
+                    <th>Date et Heure de Départ</th>
+                    <th>Statut</th>
+                    <th>Tarif</th>
+                    <th>Action</th> <!-- New column for Cancel button -->
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($reservations as $reservation)
+                <tr>
+                    <td>{{ $reservation->reservation_id }}</td>
+                    <td>{{ $reservation->lieu_depart }}</td>
+                    <td>{{ $reservation->lieu_arrivee }}</td>
+                    <td>{{ $reservation->heure_depart->format('d/m/Y H:i') }}</td>
+                    <td>
+                        <label class="badge 
+        @if($reservation->statut == 'en_attente') 
+            badge-warning
+        @elseif($reservation->statut == 'terminee') 
+            badge-success
+        @elseif($reservation->statut == 'annulee') 
+            badge-danger
+        @endif">
+                            {{$reservation->statut}}
+                        </label>
+                    </td>
+                    <td>{{ $reservation->tarif ?? 'N/A' }}</td>
+                    <td>
+                        @if ($reservation->statut === 'en_attente')
+                        <form action="{{ route('passager.cancelReservation', $reservation->reservation_id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Annuler</button>
+                        </form>
+                        @else
+                        <span class="text-muted">Non annulable</span>
+                        @endif
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
         @endif
     </div>
-@endsection

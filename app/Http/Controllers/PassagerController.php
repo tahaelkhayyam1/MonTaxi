@@ -21,8 +21,7 @@ use App\Models\Reservation;
     $utilisateur_id = Auth::id();
     
      $reservations = Reservation::where('utilisateur_id', $utilisateur_id)
-                                ->where('statut', 'en_attente')
-                                ->orderBy('heure_depart', 'asc')
+                                 ->orderBy('heure_depart', 'asc')
                                 ->get();
 
     return view('passager.reservations', compact('reservations'));

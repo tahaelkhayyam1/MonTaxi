@@ -27,11 +27,7 @@ Route::prefix('admin')->middleware(['auth', 'role
 
 });
 
-// Chauffeur routes
-Route::prefix('chauffeur')->middleware(['auth', 'role
-'])->group(function () {
-    Route::get('/home', [ChauffeurController::class, 'index'])->name('chauffeur.home');
-});
+
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
@@ -92,3 +88,9 @@ use App\Http\Controllers\ReservationController;
 Route::post('/passager/reservation', [ReservationController::class, 'store'])->name('passager.reservation');
 Route::get('/passager/reservations', [PassagerController::class, 'reservations'])->name('passager.reservations');
 Route::delete('/passager/reservations/{id}/cancel', [PassagerController::class, 'cancelReservation'])->name('passager.cancelReservation');
+ 
+
+
+
+Route::get('/chauffeur/home', [ChauffeurController::class, 'index'])->name('chauffeur.home');
+ 
