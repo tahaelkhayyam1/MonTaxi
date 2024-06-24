@@ -85,8 +85,8 @@
                     </div>
                     <div class="form-group">
                         <div class="form-group">
-                            <input id="facture" class="form-control txt-field" type="text" value="Facture : 0 MAD" placeholder="Facture : 0 MAD" disabled>
-                            <input type="hidden" id="tarif" name="tarif" value="30">
+                            <input id="facture" class="form-control txt-field"  name="tarif" type="text" value="Facture : 0 MAD" placeholder="Facture : 0 MAD"  readonly>
+                  
                         </div>
                     </div>
                     <div class="form-group">
