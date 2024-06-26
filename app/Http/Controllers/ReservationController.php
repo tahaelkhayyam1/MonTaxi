@@ -48,5 +48,16 @@ class ReservationController extends Controller
             return redirect()->back()->with('error', 'Failed to create reservation: ' . $e->getMessage());
         }
     }
+
+
+    public function PrendreCourse(Request $request){
+        
+    }
+
+
+
+
+
+
     }
     

@@ -80,33 +80,47 @@
           </td>
           <td>{{ $reservation->tarif ?? 'N/A' }} DH</td>
           <td>
-    @if($reservation->utilisateur->taxis->count() > 1)
-        <form action="{{ route('passager.cancelReservation', $reservation->reservation_id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <select name="selected_taxi" class="form-control">
-                @foreach($reservation->utilisateur->taxis as $taxi)
-                    <option value="{{ $taxi->id }}">{{ $taxi->marque }} ({{ $taxi->plate }})</option>
-                @endforeach
-            </select>
-            <button type="submit" class="btn btn-warning btn-sm mt-2">prendre</button>
-        </form>
-    @else
-        <p>ur default vehicule</p>
-        @if($reservation->utilisateur->taxis->count() == 1)
-            @php $taxi = $reservation->utilisateur->taxis->first(); @endphp
-            <input type="text" value="{{ $taxi->id }}" readonly>
-            <input type="text" value="{{ $taxi->marque }}" readonly>
+    @foreach($reservations as $reservation)
+        @php 
+            $taxisCount = $taxis->count(); 
+        @endphp
+        @endforeach
+
+        @if($taxisCount > 1)
+            <form action="{{ route('chauffeur.prendrecourse', $reservation->reservation_id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                
+                <select name="selected_taxi" class="form-control">
+                    @foreach($taxis as $taxi)
+                        <option value="{{ $taxi->id }}">{{ $taxi->marque }} ({{ $taxi->plate }})</option>
+                    @endforeach
+                </select>
+                
+                <button type="submit" class="btn btn-warning btn-sm mt-2">prendre</button>
+            </form>
         @else
-            <input type="text" value="No Taxi Available" readonly>
+            <p>ur default vehicle</p>
+            @if($taxisCount == 1)
+                @php 
+                    $taxi = $taxis->first(); 
+                @endphp
+                <input type="text" value="{{ $taxi->id }}" readonly>
+                <input type="text" value="{{ $taxi->marque }} ({{ $taxi->plate }})" readonly>
+            @else
+                <input type="text" value="No Taxi Available" readonly>
+            @endif
+            <form action="{{ route('passager.cancelReservation', $reservation->reservation_id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-warning btn-sm">prendre</button>
+            </form>
         @endif
-        <form action="{{ route('passager.cancelReservation', $reservation->reservation_id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-warning btn-sm">prendre</button>
-        </form>
-    @endif
 </td>
+
+
+
+
 
 
         </tr>
