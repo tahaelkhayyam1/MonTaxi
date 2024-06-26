@@ -18,6 +18,7 @@ class User extends Authenticatable
         'password',
         'datenaissance',
         'lieu',
+        'phonenumber',
         'role',
     ];
 
@@ -36,5 +37,9 @@ class User extends Authenticatable
     public function taxis()
     {
         return $this->hasMany(Taxi::class);
+    }
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'utilisateur_id');
     }
 }

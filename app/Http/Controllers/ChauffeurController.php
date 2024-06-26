@@ -11,7 +11,12 @@ class ChauffeurController extends Controller
     {
         $reservations = Reservation::where('statut', 'en_attente')
                                     ->orderBy('heure_depart', 'asc')
+                                    ->with(['utilisateur' => function ($query) {
+                                        $query->with('taxis');
+                                    }])
                                     ->get();
+    
         return view('chauffeur.home', compact('reservations'));
     }
+    
 }

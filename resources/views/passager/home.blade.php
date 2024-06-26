@@ -45,9 +45,9 @@
                 <form class="form" action="{{ route('passager.reservation') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <input class="form-control txt-field" type="text" name="name" placeholder="Nom complet" value="{{ Auth::user()->nom }} {{ Auth::user()->prenom }}" required>
-                        <input class="form-control txt-field" type="email" name="email" placeholder="Email" value="{{ Auth::user()->email }}" required>
-                        <input class="form-control txt-field" type="tel" name="phone" placeholder="Numéro de téléphone" value="{{ Auth::user()->phonenumber }}" required>
+                        <input class="form-control txt-field" type="text" name="name" placeholder="Nom complet" value="{{ Auth::user()->nom }} {{ Auth::user()->prenom }}" readonly>
+                        <input class="form-control txt-field" type="email" name="email" placeholder="Email" value="{{ Auth::user()->email }}" readonly>
+                        <input class="form-control txt-field" type="tel" name="phone" placeholder="Numéro de téléphone" value="{{ Auth::user()->phonenumber }}" readonly>
                     </div>
                     <div class="form-group">
                         <div class="default-select">

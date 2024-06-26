@@ -25,8 +25,8 @@ class Reservation extends Model
         'heure_depart' => 'datetime',
     ];
 
-    public function user()
+    public function utilisateur()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'utilisateur_id');
     }
 }

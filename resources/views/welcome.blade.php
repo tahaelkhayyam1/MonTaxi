@@ -26,8 +26,9 @@
 						<nav id="nav-menu-container">
 							<ul class="nav-menu">
 								<li class="menu-active"><a href="/">Accueil</a></li>
+								<li class="menu-active"><a href="/login">Se Connecter</a></li>
 							 
-								<li class="menu-has-children"><a href="">Se Connecter</a>
+								<!-- <li class="menu-has-children"><a href="">Se Connecter</a>
 									<ul>
 										<li><a href="/login">Passager</a></li>
 										 
@@ -38,7 +39,7 @@
 											</ul>
 										</li>					              
 									</ul>
-								</li>
+								</li> -->
  								<li><a href="/contact">Contact</a></li>
 							</ul>
 						</nav>
