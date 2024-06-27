@@ -69,9 +69,9 @@
                             <button type="submit" class="btn btn-info">Terminer Cours</button>
                         </form>
                         @elseif ($reservation->statut === 'terminee')
-                        <a href="LaisserAvis">    <span class="text-muted">Laisser votre <span class="badge-info">avis</span> </span></a>
+                        <a href="LaisserAvis">    <span class="text-muted">Laisser votre <span ><b style="color: blue;">avis</b></span> </span></a>
                         @else
-                        <a href="LaisserAvis">    <span class="text-muted">Non <span >annulable</span> </span></a>
+                         <span class="text-muted">Non <span >annulable</span> </span>
                         @endif
                     </td>
                 </tr>

@@ -95,9 +95,19 @@ class PassagerController extends Controller
         $review->review = $validatedData['review'];
         $review->save();
 
-        // Redirect back with a success message
+ 
         return redirect()->route('passager.avis')->with('success', 'Thank you for your feedback!');
     }
+
+
+    
+
+
+
+
+
+
+ 
 
 
 
