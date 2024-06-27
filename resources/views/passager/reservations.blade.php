@@ -70,7 +70,7 @@
                         </form>
 
                         @else
-                        <span class="text-muted">Laisser votre <a class="badge-info" href="">avis</a></span>
+                        <a href="LaisserAvis">    <span class="text-muted">Laisser votre <span class="badge-info">avis</span> </span></a>
                         @endif
                     </td>
                 </tr>

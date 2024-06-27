@@ -89,9 +89,10 @@ Route::post('/passager/reservation', [ReservationController::class, 'store'])->n
 Route::get('/passager/reservations', [PassagerController::class, 'reservations'])->name('passager.reservations');
 Route::delete('/passager/reservations/{id}/cancel', [PassagerController::class, 'cancelReservation'])->name('passager.cancelReservation');
 Route::post('/passager/reservations/{id}/terminercourse', [PassagerController::class, 'terminercourse'])->name('passager.terminercourse');
+Route::get('/passager/LaisserAvis', [PassagerController::class, 'LaisserAvis'])->name('passager.avis');
+Route::post('/passager/LaisserAvis/create', [PassagerController::class, 'storeAvis'])->name('passager.storeAvis');
 
 
 Route::get('/chauffeur/home', [ChauffeurController::class, 'index'])->name('chauffeur.home');
- 
 Route::post('/chauffeur/prendre-course/{reservation_id}', [ChauffeurController::class, 'prendreCourse'])->name('chauffeur.prendrecourse');
 Route::get('/chauffeur/mes-courses', [ChauffeurController::class, 'mesCourses'])->name('chauffeur.mes_courses');

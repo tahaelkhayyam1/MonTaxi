@@ -44,9 +44,9 @@
 </header>
 <section class="home-about-area section-gap" id="home">
   <div class="container">
-    <h2>My Reservations "hada chauffeur dashboard"</h2>
+    <h2>Courses disponible</h2>
     @if ($reservations->isEmpty())
-    <p>No reservations found.</p>
+    <p>No Courses  found.</p>
     @else
     <table class="table">
       <thead>

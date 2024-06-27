@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
+use Illuminate\Http\Request;
+use App\Models\Review;
+
+
+
 
 class PassagerController extends Controller
 {
@@ -11,6 +16,12 @@ class PassagerController extends Controller
     {
         $user = Auth::user(); // Assuming the admin is authenticated
         return view('passager.profil', compact('user'));
+    }
+
+
+    public function LaisserAvis()
+    {
+         return view('passager.LaisserAvis');
     }
 
 
@@ -64,4 +75,30 @@ class PassagerController extends Controller
 
         return redirect()->back()->withErrors('Impossible de terminer cette réservation.');
     }
+
+
+
+
+    public function storeAvis(Request $request)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'rating' => 'required|integer|between:1,5',
+            'review' => 'required|string',
+        ]);
+
+        // Create a new review instance and save to the database
+        $review = new Review;
+        $review->name = $validatedData['name'];
+        $review->rating = $validatedData['rating'];
+        $review->review = $validatedData['review'];
+        $review->save();
+
+        // Redirect back with a success message
+        return redirect()->route('passager.avis')->with('success', 'Thank you for your feedback!');
+    }
+
+
+
 }
