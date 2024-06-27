@@ -22,6 +22,11 @@ class ChauffeurController extends Controller
 }
     
 
+public function profil()
+{
+    $user = Auth::user(); // Assuming the admin is authenticated
+    return view('chauffeur.profil', compact('user'));
+}
 
 
 
@@ -66,3 +71,5 @@ public function mesCourses()
 }
 
 }
+
+

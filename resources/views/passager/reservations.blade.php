@@ -68,9 +68,10 @@
                             @csrf
                             <button type="submit" class="btn btn-info">Terminer Cours</button>
                         </form>
-
-                        @else
+                        @elseif ($reservation->statut === 'terminee')
                         <a href="LaisserAvis">    <span class="text-muted">Laisser votre <span class="badge-info">avis</span> </span></a>
+                        @else
+                        <a href="LaisserAvis">    <span class="text-muted">Non <span >annulable</span> </span></a>
                         @endif
                     </td>
                 </tr>

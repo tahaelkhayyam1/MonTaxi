@@ -96,3 +96,4 @@ Route::post('/passager/LaisserAvis/create', [PassagerController::class, 'storeAv
 Route::get('/chauffeur/home', [ChauffeurController::class, 'index'])->name('chauffeur.home');
 Route::post('/chauffeur/prendre-course/{reservation_id}', [ChauffeurController::class, 'prendreCourse'])->name('chauffeur.prendrecourse');
 Route::get('/chauffeur/mes-courses', [ChauffeurController::class, 'mesCourses'])->name('chauffeur.mes_courses');
+Route::get('/chauffeur/profil', [ChauffeurController::class, 'profil'])->name('chauffeur.profil');
