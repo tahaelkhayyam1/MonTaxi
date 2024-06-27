@@ -29,4 +29,9 @@ class Reservation extends Model
     {
         return $this->belongsTo(User::class, 'utilisateur_id');
     }
+    public function taxi()
+    {
+        return $this->belongsTo(Taxi::class, 'vehicule_id');
+    }
+
 }

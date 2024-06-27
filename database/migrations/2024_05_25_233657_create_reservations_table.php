@@ -16,7 +16,7 @@ class CreateReservationsTable extends Migration
             $table->string('lieu_depart', 255);
             $table->string('lieu_arrivee', 255);
             $table->timestamp('heure_depart');
-            $table->enum('statut', ['en_attente', 'terminee', 'annulee'])->default('en_attente');
+            $table->enum('statut', ['en_attente', 'terminee', 'annulee','encours'])->default('en_attente');
             $table->decimal('tarif', 10, 2)->nullable();
             $table->timestamps();
         });

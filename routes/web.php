@@ -88,9 +88,10 @@ use App\Http\Controllers\ReservationController;
 Route::post('/passager/reservation', [ReservationController::class, 'store'])->name('passager.reservation');
 Route::get('/passager/reservations', [PassagerController::class, 'reservations'])->name('passager.reservations');
 Route::delete('/passager/reservations/{id}/cancel', [PassagerController::class, 'cancelReservation'])->name('passager.cancelReservation');
- 
-
+Route::post('/passager/reservations/{id}/terminercourse', [PassagerController::class, 'terminercourse'])->name('passager.terminercourse');
 
 
 Route::get('/chauffeur/home', [ChauffeurController::class, 'index'])->name('chauffeur.home');
  
+Route::post('/chauffeur/prendre-course/{reservation_id}', [ChauffeurController::class, 'prendreCourse'])->name('chauffeur.prendrecourse');
+Route::get('/chauffeur/mes-courses', [ChauffeurController::class, 'mesCourses'])->name('chauffeur.mes_courses');

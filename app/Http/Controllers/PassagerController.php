@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
 
- class PassagerController extends Controller
+class PassagerController extends Controller
 {
     public function profil()
     {
@@ -17,34 +18,50 @@ use App\Models\Reservation;
 
 
     public function reservations()
-{
-    $utilisateur_id = Auth::id();
-    
-     $reservations = Reservation::where('utilisateur_id', $utilisateur_id)
-                                 ->orderBy('heure_depart', 'asc')
-                                ->get();
+    {
+        $utilisateur_id = Auth::id();
 
-    return view('passager.reservations', compact('reservations'));
-}
+        $reservations = Reservation::where('utilisateur_id', $utilisateur_id)
+            ->orderBy('heure_depart', 'asc')
+            ->get();
 
-
-public function cancelReservation($id)
-{
-    $reservation = Reservation::findOrFail($id);
-
-    // Check if the reservation belongs to the authenticated user
-    if ($reservation->utilisateur_id !== Auth::id()) {
-        abort(403, 'Unauthorized action.');
+        return view('passager.reservations', compact('reservations'));
     }
 
-    // Only cancel reservations with status 'en_attente'
-    if ($reservation->statut === 'en_attente') {
-        $reservation->statut = 'annulee';
-        $reservation->save();
-        // Optionally, redirect back with a success message
-        return redirect()->back()->with('status', 'Reservation annulée avec succès.');
-    }
 
-    return redirect()->back()->withErrors('Impossible d\'annuler cette réservation.');
-}
+    public function cancelReservation($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+
+        // Check if the reservation belongs to the authenticated user
+        if ($reservation->utilisateur_id !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        // Only cancel reservations with status 'en_attente'
+        if ($reservation->statut === 'en_attente') {
+            $reservation->statut = 'annulee';
+            $reservation->save();
+            // Optionally, redirect back with a success message
+            return redirect()->back()->with('status', 'Reservation annulée avec succès.');
+        }
+
+        return redirect()->back()->withErrors('Impossible d\'annuler cette réservation.');
+    }
+    public function terminercourse($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+
+        if ($reservation->utilisateur_id !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        if ($reservation->statut === 'encours') {
+            $reservation->statut = 'terminee';
+            $reservation->save();
+            return redirect()->back()->with('status', 'Reservation terminée avec succès.');
+        }
+
+        return redirect()->back()->withErrors('Impossible de terminer cette réservation.');
+    }
 }

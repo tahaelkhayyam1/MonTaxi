@@ -8,7 +8,7 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="home">Accueil</a></li>
-          <li class="menu-active"><a href="courses">Mes Courses</a></li>
+          <li class="menu-active"><a href="{{ route('chauffeur.mes_courses') }}">Mes Courses</a></li>
 
 
 
@@ -61,71 +61,63 @@
           <th>Action</th> <!-- New column for Cancel button -->
         </tr>
       </thead>
-      <tbody>
-        @foreach ($reservations as $reservation)
-        <tr>
-          <td>
+     <tbody>
+    @foreach ($reservations as $reservation)
+    <tr>
+        <td>
             <p>{{ $reservation->utilisateur->nom }} {{ $reservation->utilisateur->prenom }}</p>
-          </td>
-          <td>
-            <p>{{ $reservation->utilisateur->phonenumber }} </p>
-          </td>
-          <td>{{ $reservation->lieu_depart }}</td>
-          <td>{{ $reservation->lieu_arrivee }}</td>
-          <td>{{ \Carbon\Carbon::parse($reservation->heure_depart)->format('d/m/Y H:i') }}</td>
-          <td>
+        </td>
+        <td>
+            <p>{{ $reservation->utilisateur->phonenumber }}</p>
+        </td>
+        <td>{{ $reservation->lieu_depart }}</td>
+        <td>{{ $reservation->lieu_arrivee }}</td>
+        <td>{{ \Carbon\Carbon::parse($reservation->heure_depart)->format('d/m/Y H:i') }}</td>
+        <td>
             <label class="badge badge-danger">
-              {{ $reservation->statut }}
+                {{ $reservation->statut }}
             </label>
-          </td>
-          <td>{{ $reservation->tarif ?? 'N/A' }} DH</td>
-          <td>
-    @foreach($reservations as $reservation)
-        @php 
-            $taxisCount = $taxis->count(); 
-        @endphp
-        @endforeach
+        </td>
+        <td>{{ $reservation->tarif ?? 'N/A' }} DH</td>
+        <td>
+            @php 
+                $taxisCount = $taxis->count(); 
+            @endphp
 
-        @if($taxisCount > 1)
-            <form action="{{ route('chauffeur.prendrecourse', $reservation->reservation_id) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                
-                <select name="selected_taxi" class="form-control">
-                    @foreach($taxis as $taxi)
-                        <option value="{{ $taxi->id }}">{{ $taxi->marque }} ({{ $taxi->plate }})</option>
-                    @endforeach
-                </select>
-                
-                <button type="submit" class="btn btn-warning btn-sm mt-2">prendre</button>
-            </form>
-        @else
-            <p>ur default vehicle</p>
-            @if($taxisCount == 1)
-                @php 
-                    $taxi = $taxis->first(); 
-                @endphp
-                <input type="text" value="{{ $taxi->id }}" readonly>
-                <input type="text" value="{{ $taxi->marque }} ({{ $taxi->plate }})" readonly>
+            @if($taxisCount > 0)
+                <form action="{{ route('chauffeur.prendrecourse', $reservation->reservation_id) }}" method="POST">
+                    @csrf
+                    @method('POST')
+                    
+                    @if($taxisCount > 1)
+                    <label for="">Pick your Taxi : </label> <br>
+
+                        <select name="selected_taxi" class="form-control">
+                            @foreach($taxis as $taxi)
+                                <option value="{{ $taxi->id }}">{{ $taxi->marque }} ({{ $taxi->plate }})</option>
+                            @endforeach
+                        </select>
+                    @else
+                        @php 
+                            $taxi = $taxis->first(); 
+                        @endphp
+                        <label for="">Your Taxi : </label> <br>
+                        <input type="hidden" name="selected_taxi" value="{{ $taxi->id }}">
+                        <label for=""> {{ $taxi->marque }} ({{ $taxi->plate }})</label> <br>
+
+                         
+                    @endif
+                    
+                    <button type="submit" class="btn btn-warning btn-sm mt-2">Prendre</button>
+                </form>
             @else
-                <input type="text" value="No Taxi Available" readonly>
+                <p>Aucun taxi disponible</p>
             @endif
-            <form action="{{ route('passager.cancelReservation', $reservation->reservation_id) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-warning btn-sm">prendre</button>
-            </form>
-        @endif
-</td>
+        </td>
+    </tr>
+    @endforeach
+</tbody>
 
-
-
-
-
-
-        </tr>
-        @endforeach
-      </tbody>
     </table>
     @endif
   </div>

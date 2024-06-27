@@ -47,6 +47,8 @@
             badge-success
         @elseif($reservation->statut == 'annulee') 
             badge-danger
+        @else
+            badge-success
         @endif">
                             {{$reservation->statut}}
                         </label>
@@ -59,8 +61,16 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Annuler</button>
                         </form>
+
+
+                        @elseif ($reservation->statut === 'encours')
+                        <form action="{{ route('passager.terminercourse', $reservation->reservation_id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-info">Terminer Cours</button>
+                        </form>
+
                         @else
-                        <span class="text-muted">Non annulable</span>
+                        <span class="text-muted">Laisser votre <a class="badge-info" href="">avis</a></span>
                         @endif
                     </td>
                 </tr>
