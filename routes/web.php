@@ -81,7 +81,7 @@ Route::post('/admin/chauffeurs', [AdminController::class, 'storeChauffeur'])->na
  
 Route::prefix('passager')->name('passager.')->group(function () {
     Route::get('/profil', [PassagerController::class, 'profil'])->name('profil');
-    Route::post('/reservation', [ReservationController::class, 'store'])->name('reservation');
+    Route::post('/reservation', [PassagerController::class, 'store'])->name('reservation');
     Route::get('/reservations', [PassagerController::class, 'reservations'])->name('reservations');
     Route::delete('/reservations/{id}/cancel', [PassagerController::class, 'cancelReservation'])->name('cancelReservation');
     Route::post('/reservations/{id}/terminercourse', [PassagerController::class, 'terminercourse'])->name('terminercourse');
