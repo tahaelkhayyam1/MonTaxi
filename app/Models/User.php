@@ -9,11 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-
-    // Define role constants
-    const ROLE_PASSENGER = 'passenger';
-    const ROLE_CHAUFFEUR = 'chauffeur';
-    const ROLE_ADMIN = 'admin';
+ 
 
     // Fillable attributes for mass assignment
     protected $fillable = [

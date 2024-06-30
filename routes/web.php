@@ -87,6 +87,9 @@ Route::prefix('passager')->name('passager.')->group(function () {
     Route::post('/reservations/{id}/terminercourse', [PassagerController::class, 'terminercourse'])->name('terminercourse');
     Route::get('/LaisserAvis', [PassagerController::class, 'LaisserAvis'])->name('avis');
     Route::post('/LaisserAvis/create', [PassagerController::class, 'storeAvis'])->name('storeAvis');
+    Route::post('/profil/update', [PassagerController::class, 'update'])->name('passager.profil.update');
+
+
 });
 
 

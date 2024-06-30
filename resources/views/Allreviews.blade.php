@@ -1,5 +1,7 @@
 @include('includes.headerb')
+@extends('layouts.app')
 
+@section('title', 'About Us')
     <!-- Start banner Area -->
     <section class="banner-area relative about-banner" id="home">
         <div class="overlay overlay-bg"></div>

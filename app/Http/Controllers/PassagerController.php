@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
 use App\Models\Review;
 use Illuminate\Http\Request;
-
+ 
+ 
 class PassagerController extends Controller
 {
     public function index()
@@ -156,4 +157,6 @@ class PassagerController extends Controller
             return view('unauthorized');
         }
     }
+
+
 }
