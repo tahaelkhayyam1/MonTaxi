@@ -7,7 +7,7 @@
             <a href="/"><img src="{{ asset('img/logo.png') }}" alt="" title="" /></a>
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li class="menu-active"><a href="/">Accueil</a></li>
+                    <li class="menu-active"><a href="home">Accueil</a></li>
                     <li class="menu-active"><a href="/passager/reservations">Reservations</a></li>
                     <li class="menu-has-children">
                         <a href="">{{ Auth::user()->nom }} {{ Auth::user()->prenom }}</a>
@@ -29,6 +29,7 @@
 
 <!-- start banner Area -->
 <section class="banner-area relative" id="home">
+
     <div class="overlay overlay-bg"></div>
     <div class="container">
         <div class="row fullscreen d-flex align-items-center justify-content-between">
@@ -42,6 +43,11 @@
             </div>
             <div class="col-lg-4 col-md-6 header-right">
                 <h4 class="pb-30">Réservez votre taxi en ligne !</h4>
+                @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+                @endif
                 <form class="form" action="{{ route('passager.reservation') }}" method="POST">
                     @csrf
                     <div class="form-group">
@@ -85,8 +91,8 @@
                     </div>
                     <div class="form-group">
                         <div class="form-group">
-                            <input id="facture" class="form-control txt-field"  name="tarif" type="text" value="Facture : 0 MAD" placeholder="Facture : 0 MAD"  readonly>
-                  
+                            <input id="facture" class="form-control txt-field" name="tarif" type="text" value="Facture : 0 MAD" placeholder="Facture : 0 MAD" readonly>
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -268,85 +274,6 @@
     });
 </script>
 
-
-<footer class="footer-area section-gap">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Liens rapides</h6>
-                    <ul>
-                        <li><a href="#">Emplois</a></li>
-                        <li><a href="#">Actifs de la marque</a></li>
-                        <li><a href="#">Relations avec les investisseurs</a></li>
-                        <li><a href="#">Conditions d'utilisation</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Caractéristiques</h6>
-                    <ul>
-                        <li><a href="#">Emplois</a></li>
-                        <li><a href="#">Actifs de la marque</a></li>
-                        <li><a href="#">Relations avec les investisseurs</a></li>
-                        <li><a href="#">Conditions d'utilisation</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Ressources</h6>
-                    <ul>
-                        <li><a href="#">Guides</a></li>
-                        <li><a href="#">Recherche</a></li>
-                        <li><a href="#">Experts</a></li>
-                        <li><a href="#">Agences</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
-                <div class="single-footer-widget">
-                    <h6>Suivez-nous</h6>
-                    <p>Soyons sociaux</p>
-                    <div class="footer-social d-flex align-items-center">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                        <a href="#"><i class="fa fa-behance"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Newsletter</h6>
-                    <p>Restez à jour avec nos dernières nouvelles</p>
-                    <div class="" id="mc_embed_signup">
-                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
-                            <input class="form-control" name="EMAIL" placeholder="Entrer votre email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Entrer votre email '" required="" type="email">
-                            <button class="click-btn btn btn-default"><span class="lnr lnr-arrow-right"></span></button>
-                            <div style="position: absolute; left: -5000px;">
-                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                            </div>
-
-                            <div class="info"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-80 mx-auto footer-text col-lg-12">
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>
-                    document.write(new Date().getFullYear());
-                </script> Tous droits réservés | <i class="fa fa-heart-o" aria-hidden="true"></i> par <a href="https://emsi.ma/" target="_blank">Emsi</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-        </div>
-    </div>
-    <img class="footer-bottom" src="img/footer-bottom.png" alt="">
-</footer>
-
-<!-- End footer Area -->
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

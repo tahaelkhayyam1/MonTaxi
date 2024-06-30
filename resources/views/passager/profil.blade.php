@@ -91,19 +91,19 @@
                   @csrf <!-- Add this if you're using Laravel's CSRF protection -->
 
                   <div class="row">
-                  
+
                     <div class="col-sm-9 text-secondary">
                       <div class="container">
-                      <div class="row justify-content-around">
-  <div class="col-6">
-    <h6 class="mb-0">Nom</h6>
-    <input type="text" name="nom" class="form-control txt-field" value="{{ Auth::user()->nom }}">
-  </div>
-  <div class="col-6">
-    <h6 class="mb-0">Prenom</h6>
-    <input type="text" name="prenom" class="form-control txt-field" value="{{ Auth::user()->prenom }}">
-  </div>
-</div>
+                        <div class="row justify-content-around">
+                          <div class="col-6">
+                            <h6 class="mb-0">Nom</h6>
+                            <input type="text" name="nom" class="form-control txt-field" value="{{ Auth::user()->nom }}">
+                          </div>
+                          <div class="col-6">
+                            <h6 class="mb-0">Prenom</h6>
+                            <input type="text" name="prenom" class="form-control txt-field" value="{{ Auth::user()->prenom }}">
+                          </div>
+                        </div>
 
                       </div>
                     </div>
@@ -123,7 +123,7 @@
                       <h6 class="mb-0">Phone</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="email" name="phonenumber" class="form-control txt-field" value="{{ $user->phonenumber }}">
+                      <input type="text" name="phonenumber" class="form-control txt-field" value="{{ $user->phonenumber }}">
                     </div>
                   </div>
                   <hr>

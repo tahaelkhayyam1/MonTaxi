@@ -91,9 +91,9 @@ Welcome                    </h1>
               <hr>
         
               <div class="row">
-                <!-- <div class="col-sm-12">
+                <div class="col-sm-12">
                   <a class="btn btn-info " href="">Edit</a>
-                </div> -->
+                </div>
               </div>
             </div>
           </div>

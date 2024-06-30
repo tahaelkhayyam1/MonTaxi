@@ -8,7 +8,7 @@
             <div class="about-content col-lg-12">
                 <h1 class="text-white">
 Welcome                    </h1>	
-                <p class="text-white link-nav"><a href="/admin/home">Home </a>  <span class="lnr lnr-arrow-right"></span>  <span> ModifierChauffeur</span></p>
+                <p class="text-white link-nav"><a href="/admin/home">Home </a>  <span class="lnr lnr-arrow-right"></span>  <span> AjouterChauffeur</span></p>
             </div>	
         </div>
     </div>

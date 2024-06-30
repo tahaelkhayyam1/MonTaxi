@@ -56,20 +56,33 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             if ($user->role === 'admin') {
-                return redirect()->route('admin.home')->with('success', 'Login Success');
+                return redirect()->route('admin.home');
             } elseif ($user->role === 'chauffeur') {
-                return redirect()->route('chauffeur.home')->with('success', 'Login Success');
+                return redirect()->route('chauffeur.home');
             } else {
-                return redirect()->route('home')->with('success', 'Login Success');
+                return redirect()->route('home');
             }
         }
 
         return back()->with('error', 'Error Email or Password');
     }
-
     public function logout()
     {
-        Auth::logout();
+        $user = Auth::user();
+    
+        // Check if the user is authenticated and log them out based on their role
+        if ($user) {
+            if ($user->role == 'passenger') {
+                Auth::guard('web')->logout();
+            } elseif ($user->role == 'chauffeur') {
+                Auth::guard('web')->logout();
+            } elseif ($user->role == 'admin') {
+                Auth::guard('web')->logout();
+            }
+        }
+    
         return redirect()->route('login');
     }
+    
+    
 }
