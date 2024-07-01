@@ -1,4 +1,5 @@
 @include('includes.headerb')
+<title>MonTaxi | Reservations</title>
 
 <!-- Start banner Area -->
 <section class="banner-area relative about-banner" id="home">

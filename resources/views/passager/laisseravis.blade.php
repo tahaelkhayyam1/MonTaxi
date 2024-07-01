@@ -7,7 +7,7 @@
         <div class="row d-flex align-items-center justify-content-center">
             <div class="about-content col-lg-12">
                 <h1 class="text-white">Feedback Form </h1>
-                <p class="text-white link-nav"><a href="home">Home </a> <span class="lnr lnr-arrow-right"></span> <span href="/reviews"> Profil</span></p>
+                <p class="text-white link-nav"><a href="home">Home </a> <span class="lnr lnr-arrow-right"></span> <span> LaisserAvis</span></p>
             </div>
         </div>
     </div>

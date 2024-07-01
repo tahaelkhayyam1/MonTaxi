@@ -41,7 +41,7 @@ Welcome                    </h1>
     <td>{{ $reservation->lieu_arrivee }}</td>
     <td>{{ \Carbon\Carbon::parse($reservation->heure_depart)->format('d/m/Y H:i') }}</td>
     <td>{{ $reservation->taxi->marque ?? 'N/A' }} ({{ $reservation->taxi->plate ?? 'N/A' }})</td>
-    <td>{{ $reservation->statut }}</td>
+    <td>     <span class="badge badge-success">{{ $reservation->statut }}</span> </td>
     <td>{{ $reservation->tarif ?? 'N/A' }} DH</td>
 </tr>
 @endforeach

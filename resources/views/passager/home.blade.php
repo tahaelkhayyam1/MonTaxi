@@ -1,5 +1,7 @@
 @include('includes.headerb')
 
+<title>MonTaxi | Home</title>
+
 <header id="header">
     <div class="header-top"></div>
     <div class="container main-menu">
